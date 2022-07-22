@@ -1,0 +1,94 @@
+<!-- Begin page content -->
+<main role="main" class="container">
+    <h1 class="mt-5">&nbsp;</h1>
+    <h5 class="mt-5">Dodavanje konkursa</h5>
+    <br/>
+    
+    <div class="loader" *ngIf="dataLoading"></div>
+    <div class="alert alert-danger" role="alert" *ngIf="error">
+      GREŠKA : {{ errorMessage }}.
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="savedChanges == true">
+      <strong>Cestitamo!</strong> Uspesno uneli konkurs
+    </div>
+  
+  
+    <span class="lead">
+  
+    <form id="form1" class="form-signin" #f="ngForm" >
+  
+        <div class="alert alert-danger" role="alert" *ngIf=" !naz.valid && (naz.dirty || naz.touched)">
+            Morate uneti naziv!
+        </div>
+      <div class="form-label-group">
+        <input type='text' [(ngModel)]='naziv' id="naziv" name='naziv' #naz="ngModel" class="form-control" placeholder="Naziv" required autofocus >   
+      </div>
+    
+
+          <br>
+
+          <div class="alert alert-danger" role="alert" *ngIf=" !naz1.valid && (naz1.dirty || naz1.touched)">
+              Morate uneti opis pozicije!
+            </div>
+      <div class="form-label-group" >
+        <input type='text' #naz1="ngModel" [(ngModel)]='tekst' name='tekst' id="tekst" class="form-control" placeholder="Opis pozicije" required  >
+      </div>
+
+
+      
+      <div class="form-label-group" >
+        <br>Datum mm/dd/yyyy
+        <div class="alert alert-danger" role="alert" *ngIf=" !naz11.valid && (naz11.dirty || naz11.touched)">
+          Morate uneti datum!
+        </div>
+        
+          <input type="date" #naz11="ngModel" [(ngModel)]='rokd' name="rokd" id="rokd" class="form-control" required>
+          
+          
+          <br>         Vreme hh:mm AM/PM
+          <div class="alert alert-danger" role="alert" *ngIf=" !naz12.valid && (naz12.dirty || naz12.touched)">
+              Morate uneti vreme!
+            </div>
+
+
+ 
+          <input type="time" #naz12="ngModel" [(ngModel)]='rokt' name="rokt" id="rokt" class="form-control" required>
+        </div>
+  
+  <br>
+  
+     <div class="form-label-group" >        
+        <input type='radio' [(ngModel)]='vrsta' name='vrsta' id="vrsta" value="Praksa" checked>
+        Praksa
+      <br>         
+        <input type='radio' [(ngModel)]='vrsta' name='vrsta' id="vrsta" value="Posao" >
+        Posao
+      </div>
+  
+  
+  
+  <br>
+  
+    
+  <div *ngIf="!f.valid else showSubmitButton">
+      <button class="btn btn-lg btn-block btn-block" type="submit" disabled>Dodaj</button>
+    </div>
+
+    <ng-template #showSubmitButton>
+      <button class="btn btn-lg btn-primary btn-block" type="submit"  (click)='dodaj()'>Dodaj</button>
+    </ng-template>    
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    </form>
+  
+  </span>
+  
+  </main>

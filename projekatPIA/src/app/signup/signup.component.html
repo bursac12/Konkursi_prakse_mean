@@ -1,0 +1,160 @@
+<!-- Begin page content -->
+<main role="main" class="container">
+  <h1 class="mt-5">&nbsp;</h1>
+  <h5 class="mt-5">Registracija</h5>
+  <br/>
+  <div class="alert alert-info" *ngIf="savedChanges != true ">
+      <strong>Obavestenje:</strong> Sva polja na ovoj stranici su obavezna
+    </div>  
+
+
+
+  <div class="loader" *ngIf="dataLoading"></div>
+  <div class="alert alert-danger" role="alert" *ngIf="error">
+    GREŠKA : {{ errorMessage }}.
+  </div>
+  <div class="alert alert-success" role="alert" *ngIf="savedChanges == true">
+    <strong>Cestitamo!</strong> Uspesno ste se registrovali
+  </div>
+
+
+
+  <span class="lead">
+
+  <form class="form-signin" #f="ngForm">
+
+
+      
+   
+
+
+
+    <div class="form-label-group">
+      <input type='text' #un="ngModel" [(ngModel)]='username' id="username" name='username' placeholder="Username" autofocus required class="form-control">   
+    </div>
+    
+    
+
+    <div class="form-label-group" >
+      <input type='password' #ps="ngModel" [(ngModel)]='password' name='password' id="password" class="form-control" placeholder="Password" 
+      pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\#*.!?$%]).{8,12})">     
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="!ps.valid && (ps.dirty || ps.touched)">
+        Morate uneti password(3 mala slova, 1 veliko slovo, 1 numerik, 1 specijalni znak (#*.!?$), duzine 8-12 karaktera)!
+    </div>
+
+
+
+    <div class="form-label-group" >
+      <input type='password' #ps1="ngModel" [(ngModel)]='password1' name='password1' id="password1" class="form-control" placeholder="Potvrda password-a">
+    </div>
+
+    <div class="form-label-group">
+      <input type="email" [(ngModel)]='email' name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" #inputEmail="ngModel" required email ngModel>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="inputEmail.invalid && (inputEmail.dirty || inputEmail.touched)">
+        Morate uneti ispravan e-mail!
+    </div>
+
+
+
+   <div class="form-label-group" >     
+      <input type='radio' [(ngModel)]='vrsta' name='vrsta' id="vrsta" value="student" checked>
+      Student
+    <br>      
+      <input type='radio' [(ngModel)]='vrsta' name='vrsta' id="vrsta" value="kompanija" >
+      Kompanija      
+    </div>
+
+    <div class="form-label-group" *ngIf="vrsta=='student'">
+
+  
+      <input type='text' #im="ngModel" [(ngModel)]='ime' name='ime' id="ime" class="form-control" placeholder="Ime studenta"  required>
+  
+      
+      <input type='text' [(ngModel)]='prezime' name='prezime' id="prezime" class="form-control" placeholder="Prezime studenta"  required>
+      <input type='text' [(ngModel)]='tel' name='tel' id="tel" class="form-control" placeholder="Broj telefona"  required>
+     
+
+      
+     
+      <input type="number" #go="ngModel" [(ngModel)]='god' name='go' id="go" class="form-control" placeholder="Godina studija"  required
+      min="1" max="4" >  
+      <div class="alert alert-danger" role="alert" *ngIf="!go.valid && (go.dirty || go.touched)">
+          Morate uneti broj!
+      </div>
+
+      <input type='checkbox' [(ngModel)]='dipl' name='dipl' id="dipl" value="diplomac" > &nbsp; Diplomirao/Diplomirala?
+
+     
+
+
+
+      
+    </div>
+
+
+
+
+    <div class="form-label-group" *ngIf="vrsta=='kompanija'">
+      <input type='text' [(ngModel)]='nazivcomp' name='nazivcomp' id="nazivcomp" class="form-control" placeholder="Naziv kompanije"  required>
+      <input type='text' [(ngModel)]='adresacomp' name='adresacomp' id="adresacomp" class="form-control" placeholder="Adresa"  required>
+      <input type='text' [(ngModel)]='grad' name='grad' id="grad" class="form-control" placeholder="Grad"  required>
+      <input type='text' [(ngModel)]='ime' name='ime' id="ime" class="form-control" placeholder="Ime direktora"  required>
+      <input type='text' [(ngModel)]='prezime' name='prezime' id="prezime" class="form-control" placeholder="Prezime direktora"  required>
+      
+      
+      <input type='number' #pi="ngModel" [(ngModel)]='pib' name='pi' id="pi" class="form-control" placeholder="P.I.B. Broj"  required min="100000000" max="999999999" ngModel>
+      <div class="alert alert-danger" role="alert" *ngIf="!pi.valid && (pi.dirty || pi.touched)">
+          Morate uneti ispravan broj za PIB!
+      </div>
+      
+      
+   
+      <input type='number' #brz="ngModel" [(ngModel)]='brzap' name='brzap' id="brzap" class="form-control" placeholder="Trenutni broj zaposlenih"  required>
+      <div class="alert alert-danger" role="alert" *ngIf="!brz.valid && (brz.dirty || brz.touched)">
+          Morate uneti ispravan broj zaposlenih!
+      </div>
+      
+
+
+
+      <input type='text' [(ngModel)]='sajt' name='sajt' id="sajt" class="form-control" placeholder="Veb-sajt adresa"  required>
+      
+
+      &nbsp;Delatnost:
+<select class="form-control" placeholder="e-mail adresa" [(ngModel)]='delatnost' name='delatnost' id="delatnost">
+  
+  <option value="IT"> IT </option>
+  <option value="Telekomunikacije"> Telekomunikacije </option>
+  <option value="Energetika"> Energetika </option>
+  <option value="Gradjevina i arhitektura"> Građevina i arhitektura </option>
+  <option value="Mašinstvo"> Mašinstvo </option>
+  <option value="Automatika"> Automatika </option>
+</select>
+
+
+      <input type='text' [(ngModel)]='specijalnost' name='specijalnost' id="specijalnost" class="form-control" placeholder="Uža specijalnost"  required>
+    </div>
+
+    
+
+
+    <div *ngIf="!f.valid else showSubmitButton">
+        <button class="btn btn-lg btn-block btn-block" type="submit" disabled>Registracija</button>
+      </div>
+  
+      <ng-template #showSubmitButton>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"  (click)='setUser()'>Registracija</button>
+      </ng-template>    
+    
+    
+
+ <!----   <p>{{delatnost}} {{password}}  {{password1}} {{vrsta}}</p> !---->
+
+
+  </form>
+
+</span>
+
+</main>

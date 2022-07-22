@@ -1,0 +1,113 @@
+<!-- Begin page content -->
+<main role="main" class="container">
+    <h1 class="mt-5">&nbsp;</h1>
+    <h5 class="mt-5">Konkursi</h5>
+    <br/>
+    
+    <div class="loader" *ngIf="dataLoading"></div>
+    <div class="alert alert-danger" role="alert" *ngIf="error">
+      GREŠKA : {{ errorMessage }}.
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="savedChanges == true">
+      <strong>Cestitamo!</strong> Uspešno ste se prijavili na konkurs
+    </div>
+  
+  
+    <span class="lead">
+  
+    <form class="form-signin">
+
+
+     <br>Izaberite tip konkursa:
+      <select class="form-control" placeholder="delatnost" [(ngModel)]='delatnost' name='delatnost' id="delatnost" multiple >
+          <option value="praksa"> Praksa </option>
+          <option value="posao"> Posao </option>
+      </select>
+      <br>
+
+
+  
+      <div class="form-label-group">
+        <input type='text' [(ngModel)]='kompanija' id="kompanija" name='kompanija' placeholder="Naziv kompanije"  class="form-control">   
+      </div>
+      <br>
+
+      <div class="form-label-group" >
+        <input type='text'  [(ngModel)]='konkurs' name='konkurs' id="konkurs" class="form-control" placeholder="Naziv konkursa" >
+      </div>
+ 
+  <br>
+  
+  
+      <button class="btn btn-lg btn-primary btn-block"  (click)='pretragacomp()'>Pretraga</button>
+  
+      <div *ngIf='kompanije1'>
+          <table class="table">
+              <thead>
+                  <tr>
+                    <th>Naziv</th>
+                    <th>Direktor</th>
+                    <th>Adresa</th>
+                    <th>Grad</th>
+                    <th>P.I.B.</th>
+                    <th>Broj zaposlenih</th>
+                    <th>WEB-Sajt</th>
+                    <th>e-mail</th>
+                    <th>Delatnost</th>
+                    <th>Specijalnost</th>
+                    
+                  </tr>
+                </thead>
+
+
+            <tr *ngFor='let k of kompanije1'>
+              <td>{{k.nazivcomp}}</td>
+              <td>{{k.ime}}&nbsp;{{k.prezime}}</td>
+              <td>{{k.adresacomp}}</td>
+              <td>{{k.grad}}</td>
+              <td>{{k.pib}}</td>
+              <td>{{k.brzap}}</td>
+              <td><a href="http://{{k.sajt}}">{{k.sajt}}</a></td>
+              <td>{{k.email}}</td>
+              <td>{{k.delatnost}}</td>
+              <td>{{k.specijalnost}}</td>
+            </tr>
+          </table>
+        </div>
+    
+      
+      <div *ngIf='kompanije'>
+          <table class="table">
+              <thead>
+                  <tr>
+                    <th>Naziv</th>
+                    <th>Tekst</th>
+                    <th>Rok</th>
+                    <th>Tip</th>
+                    <th>Kompanija</th>
+                  </tr>
+                </thead>
+
+
+            <tr *ngFor='let k of kompanije'>
+              <td>{{k.naziv}}</td>
+              <td>{{k.tekst}}</td>
+
+              <td>{{k.rok}}</td>
+
+              <td>{{k.tip}}</td>
+              <td>{{k.owner}}</td>
+              <td><button type="submit" class="btn btn-info" (click)="prijava(k.owner,k.idkonkurs)">Prijavi me</button></td>
+              
+            </tr>
+          </table>
+        </div>
+        
+        <p> {{pr.owner}} {{pr.username}} {{pr.idkonkurs}}  </p>
+
+
+    </form>
+  
+  </span>
+  
+  </main>

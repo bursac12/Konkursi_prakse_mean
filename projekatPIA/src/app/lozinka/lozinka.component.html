@@ -1,0 +1,45 @@
+<!-- Begin page content -->
+<main role="main" class="container">
+  <h1 class="mt-5">&nbsp;</h1>
+  <h5 class="mt-5">Promena passworda</h5>
+  <br/>
+  
+  <div class="loader" *ngIf="dataLoading"></div>
+  <div class="alert alert-danger" role="alert" *ngIf="error">
+    GREŠKA : {{ errorMessage }}.
+  </div>
+  <div class="alert alert-success" role="alert" *ngIf="savedChanges == true">
+    <strong>Cestitamo!</strong> Uspesno ste promenili password
+  </div>
+
+
+  <span class="lead">
+
+  <form class="form-signin">
+
+    <div class="form-label-group">
+      <input type='text' [(ngModel)]='username' id="username" name='username' placeholder="Username" autofocus required class="form-control">   
+    </div>
+        
+    <div class="form-label-group" >
+      <input type='password'  [(ngModel)]='password' name='password' id="password" class="form-control" placeholder="Stari password" >
+      
+    </div>
+
+
+    <div class="form-label-group" >
+      <input type='password' [(ngModel)]='password1' name='password1' id="password1" class="form-control" placeholder="Novi password">
+    </div>
+
+
+
+    <button class="btn btn-lg btn-primary btn-block"  (click)='lozinka()'>Promena password-a</button>
+
+
+ <!--    <p>{{delatnost}} {{password}}  {{password1}} {{vrsta}}</p>  !-->
+
+  </form>
+
+</span>
+
+</main>

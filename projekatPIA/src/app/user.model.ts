@@ -1,0 +1,20 @@
+export interface User{
+    username : String,
+    pass: String,
+    ime: String,
+    prezime: String,
+    tel: String,
+    email: String,
+    god: number,
+    isDipl: boolean,
+    isAdmin: boolean,
+    isComp: boolean,
+    nazivcomp: String,
+    adresacomp: String,
+    grad: String,
+    pib: number,
+    brzap: number,
+    sajt: String,
+    delatnost: String,
+    specijalnost: String    
+}

@@ -1,0 +1,91 @@
+<!-- Begin page content -->
+<main role="main" class="container">
+    <h1 class="mt-5">&nbsp;</h1>
+    <h5 class="mt-5">Pretraga</h5>
+    <br/>
+    
+    <div class="loader" *ngIf="dataLoading"></div>
+    <div class="alert alert-danger" role="alert" *ngIf="error">
+      GREŠKA : {{ errorMessage }}.
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="savedChanges == true">
+      <strong>Cestitamo!</strong> Uspesno ste promenili password
+    </div>
+  
+  
+    <span class="lead">
+  
+    <form class="form-signin">
+
+
+
+
+
+
+  
+      <div class="form-label-group">
+        <input type='text' [(ngModel)]='kompanija' id="kompanija" name='kompanija' placeholder="Naziv kompanije"  class="form-control">   
+      </div>
+      <br>
+      <div class="form-label-group" >
+        <input type='text'  [(ngModel)]='grad' name='grad' id="grad" class="form-control" placeholder="Grad" >
+      </div>
+      <br>Izaberite jednu ili vise delatnosti:
+      <select class="form-control" placeholder="delatnost" [(ngModel)]='delatnost' name='delatnost' id="delatnost" multiple>
+          <option value="IT"> IT </option>
+          <option value="Telekomunikacije"> Telekomunikacije </option>
+          <option value="Energetika"> Energetika </option>
+          <option value="Gradjevina i arhitektura"> Građevina i arhitektura </option>
+          <option value="Mašinstvo"> Mašinstvo </option>
+          <option value="Automatika"> Automatika </option>
+        </select>
+  <br>
+  
+  
+      <button class="btn btn-lg btn-primary btn-block"  (click)='pretraga()'>Pretraga</button>
+  
+  
+ 
+    
+      
+      <div *ngIf='kompanije'>
+          <table class="table">
+              <thead>
+                  <tr>
+                    <th>Naziv</th>
+                    <th>Direktor</th>
+                    <th>Adresa</th>
+                    <th>Grad</th>
+                    <th>P.I.B.</th>
+                    <th>Broj zaposlenih</th>
+                    <th>WEB-Sajt</th>
+                    <th>e-mail</th>
+                    <th>Delatnost</th>
+                    <th>Specijalnost</th>
+                    
+                  </tr>
+                </thead>
+
+
+            <tr *ngFor='let k of kompanije'>
+              <td>{{k.nazivcomp}}</td>
+              <td>{{k.ime}}&nbsp;{{k.prezime}}</td>
+              <td>{{k.adresacomp}}</td>
+              <td>{{k.grad}}</td>
+              <td>{{k.pib}}</td>
+              <td>{{k.brzap}}</td>
+              <td><a href="http://{{k.sajt}}">{{k.sajt}}</a></td>
+              <td>{{k.email}}</td>
+              <td>{{k.delatnost}}</td>
+              <td>{{k.specijalnost}}</td>
+            </tr>
+          </table>
+        </div>
+        
+
+
+    </form>
+  
+  </span>
+  
+  </main>
